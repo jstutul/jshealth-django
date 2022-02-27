@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+      <section>
+    <div
+    class="p-5 text-center bg-image"
+    style="
+      background-image: url('{% static 'banner.jpg' %}');
+      height: 400px;
+    "
+  >
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-white">
+          <h1 class="mb-3">Welcome to JS Health center</h1>
+          <h4 class="mb-3">Find your best medical services</h4>
+          <a class="btn btn-outline-light btn-lg" href="#service" role="button"
+          >Start Now</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </section>
+
+ <main>
+   <div class="container my-5 py-5">
+       <section id="service">
+           <h2  class="border-bottom text-center py-2">Services</h2>
+           <div class="row g-4 my-2">
+               {% for service in services_list|slice:":6" %}
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card h-100">
+                  <img src="{{ service.image }}" class="card-img-top p-4" alt="Palm Springs Road"/>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ service.name }}</h5>
+                    <p class="card-text">
+                     {{ service.details|slice:":120" }}
+                    </p>
+                  </div>
+                 <div class="m-3">
+                    <a href="{% url 'singleservice' service.id %}" class="btn btn-warning">View Details</a>
+                  </div>
+                </div>
+              </div>
+             {% endfor %}
+            </div>
+       </section>
+   </div>
+</main>
+<!-- Section: Testimonials v.1 -->
+<section class="container text-center my-5 p-2">
+  <h2 class="h1-responsive font-weight-bold my-5">Client say</h2>
+  <p class="dark-grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam
+    eum porro a pariatur veniam.</p>
+  <div class="row">
+    {% for client in client_list %}
+    <div class="col-lg-4 col-md-4 mb-md-0 mb-4">
+      <!--Card-->
+      <div class="card testimonial-card">
+        <!--Background color-->
+        <div class="card-up blue-gradient">
+        </div>
+        <!--Avatar-->
+        <div class="avatar mx-auto white">
+          <img src="{{ client.image }}" style="height: 300px" class="img-fluid">
+        </div>
+        <div class="card-body">
+          <!--Name-->
+          <h4 class="font-weight-bold mb-4">{{ client.name }}</h4>
+          <hr>
+          <!--Quotation-->
+          <p class="dark-grey-text mt-4">{{ client.degisnation }}</p>
+        </div>
+      </div>
+      <!--Card-->
+    </div>
+    <!--Grid column-->
+    {% endfor %}
+  </div>
+  <!-- Grid row -->
+
+</section>
+<!-- Section: Testimonials v.1 -->
+{% endblock %}

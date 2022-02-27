@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block main %}
+ <main>
+   <div class="container my-5 py-5">
+       <section>
+           <h2 class="border-bottom text-center py-2">Services</h2>
+           <div class="row g-4 my-2">
+               {% for service in services_list %}
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card h-100">
+                  <img src="{{ service.image }}" class="card-img-top p-4" alt="Skyscrapers"/>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ service.name }}</h5>
+                    <p class="card-text">
+                      {{ service.details|slice:":120" }}
+                    </p>
+                  </div>
+                 <div class="m-3">
+                    <a href="{% url 'singleservice' service.id %}"  class="btn btn-warning">View Details</a>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+       </section>
+   </div>
+</main>
+{% endblock %}
